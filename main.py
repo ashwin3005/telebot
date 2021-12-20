@@ -6,7 +6,7 @@ import requests
 from bs4 import BeautifulSoup
 from lxml import etree 
 
-bot_token = "5042846869:AAGIv4XJ4-aBuUeRKHoJhlar9b7-GmtdIrY"
+bot_token = "5049973042:AAG--t9oSTHxO3DE30PyxXTItj98np26kls"
 bot = Bot(bot_token)
 
 __api  = f"https://api.telegram.org/bot{bot_token}/getUpdates"
@@ -19,6 +19,7 @@ print(result)
 group_id = None
 for update_id in result:
     chat_number = update_id["my_chat_member"] if "my_chat_member" in update_id else None
+    print(chat_number)
     if chat_number is None:
         continue
     chat = chat_number['chat']
@@ -41,7 +42,7 @@ def overview():
     
     # replace this with the team initials eg. IND for India
     pref = 'ENG'
-    
+    match = None
     for li in table:
         match = li.text.strip()
         # print(match)
@@ -51,22 +52,27 @@ def overview():
             link = li.find('div', attrs = {'class': 'cb-ovr-flo'})
             aus = li.find('div', attrs= {'class': 'cb-hmscg-tm-nm'})
             # print('\n')
-            return  match
+            match =  match
+            break
+    position = match.find("AUS")
+    position2 = match.find("ENG")
+    final_score = ""
+    for index, val in enumerate(match):
+        if index - 3 == position:
+            final_score += " "
+        if index - 3 == position2:
+            final_score += " "
+        final_score += val
+    score = final_score
+    return score
+
 
 score = overview()
-position = score.find("AUS")
-position2 = score.find("ENG")
-final_score = ""
-for index, val in enumerate(score):
-    if index - 3 == position:
-        final_score += " "
-    if index - 3 == position2:
-        final_score += " "
-    final_score += val
-score = final_score
 
 previous_msg = ""
-while group_id is not None and previous_msg != overview():
+while group_id is not None:
     previous_msg = overview()
-    updater.bot.sendMessage(chat_id=f'{group_id}', text=score)
+    if previous_msg != overview():
+        updater.bot.sendMessage(chat_id=f'{group_id}', text=score)
+        print("Message is updated")
     sleep(1)

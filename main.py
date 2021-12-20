@@ -30,7 +30,7 @@ for update_id in result:
         print("group not found")
 
 
-updater: Updater = Updater("5042846869:AAGIv4XJ4-aBuUeRKHoJhlar9b7-GmtdIrY",use_context=True)
+updater: Updater = Updater(bot_token,use_context=True)
 
 #group_id : int = -664721777
 

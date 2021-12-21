@@ -1,0 +1,45 @@
+{
+    "ok":true,
+    "result":[
+       {
+          "update_id":371063704,
+          "message":{
+             "message_id":10,
+             "from":{
+                "id":1413906145,
+                "is_bot":false,
+                "first_name":"Ashwin",
+                "last_name":"S",
+                "language_code":"en"
+             },
+             "chat":{
+                "id":-664721777,
+                "title":"Cricket score",
+                "type":"group",
+                "all_members_are_administrators":true
+             },
+             "date":1640112534,
+             "new_chat_participant":{
+                "id":5044478785,
+                "is_bot":true,
+                "first_name":"Cricket score",
+                "username":"cric_score_alert_bot"
+             },
+             "new_chat_member":{
+                "id":5044478785,
+                "is_bot":true,
+                "first_name":"Cricket score",
+                "username":"cric_score_alert_bot"
+             },
+             "new_chat_members":[
+                {
+                   "id":5044478785,
+                   "is_bot":true,
+                   "first_name":"Cricket score",
+                   "username":"cric_score_alert_bot"
+                }
+             ]
+          }
+       }
+    ]
+ }
